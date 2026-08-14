@@ -1,0 +1,41 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_csv("housing.csv")
+# Display First Five Records
+
+
+print(df.head())
+
+
+# Display Numerical Columns
+
+
+print(df.select_dtypes(include="number").columns)
+
+
+# Calculate Correlation Matrix
+
+
+correlation = df.corr(numeric_only=True)
+print(correlation)
+
+
+# Display Correlation Heatmap
+
+
+plt.figure(figsize=(10, 7))
+
+
+sns.heatmap(
+    correlation,
+    annot=True,
+    cmap="coolwarm"
+)
+
+
+plt.title("Correlation Heatmap")
+
+
+plt.show()
+

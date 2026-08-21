@@ -1,0 +1,173 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+print("========== B) PROBABILITY DISTRIBUTIONS ==========")
+
+# =====================================================
+# NORMAL DISTRIBUTION
+# =====================================================
+
+print("\n----- NORMAL DISTRIBUTION -----")
+
+# 1. Generate 1000 numbers
+normal_data = np.random.normal(
+    50,
+    10,
+    1000
+)
+
+print("Mean = 50")
+print("Standard Deviation = 10")
+
+# 2. Mean, Median, Mode, Variance, SD
+mean = np.mean(normal_data)
+median = np.median(normal_data)
+mode = stats.mode(normal_data, keepdims=True).mode[0]
+variance = np.var(normal_data)
+std = np.std(normal_data)
+
+print("\n2. Statistics")
+print("Mean =", mean)
+print("Median =", median)
+print("Mode =", mode)
+print("Variance =", variance)
+print("Standard Deviation =", std)
+
+# 3. Statistics
+print("\n3. Normal Distribution Statistics")
+print("Mean =", mean)
+print("Median =", median)
+print("Variance =", variance)
+print("Standard Deviation =", std)
+print("Minimum =", np.min(normal_data))
+print("Maximum =", np.max(normal_data))
+
+# 4. Histogram
+plt.hist(normal_data, bins=30)
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Normal Distribution Histogram")
+plt.show()
+
+print("\nAnalysis:")
+print("The normal distribution is approximately bell-shaped.")
+print("Most values are around the mean 50.")
+
+# 5. Box plot
+plt.boxplot(normal_data)
+plt.ylabel("Value")
+plt.title("Normal Distribution Box Plot")
+plt.show()
+
+# 6. Percentage between 40 and 60
+percentage_40_60 = np.mean(
+    (normal_data >= 40) &
+    (normal_data <= 60)
+) * 100
+
+print("\n6. Percentage between 40 and 60 =",
+      percentage_40_60, "%")
+
+# 7. Percentage between 30 and 70
+percentage_30_70 = np.mean(
+    (normal_data >= 30) &
+    (normal_data <= 70)
+) * 100
+
+print("7. Percentage between 30 and 70 =",
+      percentage_30_70, "%")
+
+
+# =====================================================
+# UNIFORM DISTRIBUTION
+# =====================================================
+
+print("\n----- UNIFORM DISTRIBUTION -----")
+
+# 8. Generate 1000 numbers between 0 and 100
+uniform_data = np.random.uniform(
+    0,
+    100,
+    1000
+)
+
+print("Number of values =", len(uniform_data))
+print("Minimum =", np.min(uniform_data))
+print("Maximum =", np.max(uniform_data))
+print("Mean =", np.mean(uniform_data))
+
+# 9. Histogram
+plt.hist(uniform_data, bins=20)
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Uniform Distribution Histogram")
+plt.show()
+
+# 10. Box plot
+plt.boxplot(uniform_data)
+plt.ylabel("Value")
+plt.title("Uniform Distribution Box Plot")
+plt.show()
+
+
+# =====================================================
+# EXPONENTIAL DISTRIBUTION
+# =====================================================
+
+print("\n----- EXPONENTIAL DISTRIBUTION -----")
+
+# 11. Generate 1000 values
+exponential_data = np.random.exponential(
+    scale=2,
+    size=1000
+)
+
+print("Scale = 2")
+print("Number of values =", len(exponential_data))
+print("Mean =", np.mean(exponential_data))
+
+# 12. Histogram
+plt.hist(exponential_data, bins=30)
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Exponential Distribution Histogram")
+plt.show()
+
+# 13. Box plot
+plt.boxplot(exponential_data)
+plt.ylabel("Value")
+plt.title("Exponential Distribution Box Plot")
+plt.show()
+
+# Find possible extreme values
+Q1 = np.percentile(exponential_data, 25)
+Q3 = np.percentile(exponential_data, 75)
+
+IQR = Q3 - Q1
+
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+
+extreme = exponential_data[
+    (exponential_data < lower) |
+    (exponential_data > upper)
+]
+
+print("\n13. Extreme Values")
+print("Q1 =", Q1)
+print("Q3 =", Q3)
+print("IQR =", IQR)
+print("Possible extreme values =", len(extreme))
+
+# 14. Percentage greater than 2
+greater2 = np.mean(exponential_data > 2) * 100
+
+print("\n14. Percentage greater than 2 =",
+      greater2, "%")
+
+# 15. Percentage greater than 5
+greater5 = np.mean(exponential_data > 5) * 100
+
+print("15. Percentage greater than 5 =",
+      greater5, "%")

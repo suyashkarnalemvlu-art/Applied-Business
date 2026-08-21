@@ -1,0 +1,187 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("========== C) COIN TOSS EXPERIMENT ==========")
+
+# =====================================================
+# 1. 1000 COIN TOSSES
+# =====================================================
+
+coin = np.random.choice(
+    ["Heads", "Tails"],
+    1000
+)
+
+heads = np.sum(coin == "Heads")
+tails = np.sum(coin == "Tails")
+
+heads_probability = heads / 1000
+tails_probability = tails / 1000
+
+print("\n1. 1000 Coin Tosses")
+print("Total Tosses =", 1000)
+print("Heads =", heads)
+print("Tails =", tails)
+
+print("Experimental Probability of Heads =",
+      heads_probability)
+
+print("Experimental Probability of Tails =",
+      tails_probability)
+
+
+# =====================================================
+# 2. THEORETICAL PROBABILITY
+# =====================================================
+
+print("\n2. Theoretical Probability")
+
+print("Theoretical Probability of Heads =",
+      0.5)
+
+print("Theoretical Probability of Tails =",
+      0.5)
+
+
+# =====================================================
+# 3. BAR CHART
+# =====================================================
+
+plt.bar(
+    ["Heads", "Tails"],
+    [heads, tails]
+)
+
+plt.xlabel("Outcome")
+plt.ylabel("Frequency")
+plt.title("Frequency of Heads and Tails")
+plt.show()
+
+
+# =====================================================
+# 4. PIE CHART
+# =====================================================
+
+plt.pie(
+    [heads, tails],
+    labels=["Heads", "Tails"],
+    autopct="%1.1f%%"
+)
+
+plt.title("Percentage of Heads and Tails")
+plt.show()
+
+
+# =====================================================
+# 5. 10 TOSSES WITH 8 HEADS
+# =====================================================
+
+print("\n5. 10 Tosses with 8 Heads")
+
+heads_10 = 8
+total_10 = 10
+
+experimental_probability_10 = heads_10 / total_10
+
+print("Total Tosses =", total_10)
+print("Number of Heads =", heads_10)
+print("Experimental Probability of Heads =",
+      experimental_probability_10)
+
+
+# =====================================================
+# 6. 10,000 COIN TOSSES
+# =====================================================
+
+print("\n========== 10,000 COIN TOSSES ==========")
+
+coin_10000 = np.random.choice(
+    ["Heads", "Tails"],
+    10000
+)
+
+heads_10000 = np.sum(coin_10000 == "Heads")
+tails_10000 = np.sum(coin_10000 == "Tails")
+
+experimental_heads = heads_10000 / 10000
+experimental_tails = tails_10000 / 10000
+
+theoretical_heads = 0.5
+theoretical_tails = 0.5
+
+difference_heads = abs(
+    experimental_heads - theoretical_heads
+)
+
+difference_tails = abs(
+    experimental_tails - theoretical_tails
+)
+
+
+# Complete analysis
+print("\nComplete Analysis")
+
+print("Total Tosses =", 10000)
+
+print("Number of Heads =", heads_10000)
+
+print("Number of Tails =", tails_10000)
+
+print(
+    "Experimental Probability of Heads =",
+    experimental_heads
+)
+
+print(
+    "Experimental Probability of Tails =",
+    experimental_tails
+)
+
+print(
+    "Theoretical Probability of Heads =",
+    theoretical_heads
+)
+
+print(
+    "Theoretical Probability of Tails =",
+    theoretical_tails
+)
+
+print(
+    "Difference in Heads Probability =",
+    difference_heads
+)
+
+print(
+    "Difference in Tails Probability =",
+    difference_tails
+)
+
+
+# =====================================================
+# BAR CHART - 10,000 TOSSES
+# =====================================================
+
+plt.bar(
+    ["Heads", "Tails"],
+    [heads_10000, tails_10000]
+)
+
+plt.xlabel("Outcome")
+plt.ylabel("Frequency")
+plt.title("10,000 Coin Tosses")
+plt.show()
+
+
+# =====================================================
+# PIE CHART - 10,000 TOSSES
+# =====================================================
+
+plt.pie(
+    [heads_10000, tails_10000],
+    labels=["Heads", "Tails"],
+    autopct="%1.1f%%"
+)
+
+plt.title("10,000 Coin Tosses Percentage")
+plt.show()

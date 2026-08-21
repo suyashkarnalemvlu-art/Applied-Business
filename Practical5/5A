@@ -1,0 +1,139 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("========== A) DICE PROBABILITY EXPERIMENT ==========")
+
+# 1. Simulate 1000 dice rolls
+rolls = np.random.randint(1, 7, 1000)
+
+print("\nFirst 20 dice outcomes:")
+print(rolls[:20])
+
+# Frequency of each number
+frequency = []
+
+for i in range(1, 7):
+    count = np.sum(rolls == i)
+    frequency.append(count)
+
+# 2. Experimental probability
+print("\nExperimental Probability:")
+for i in range(6):
+    print(i + 1, "=", frequency[i] / 1000)
+
+# 3. Theoretical probability
+print("\nTheoretical Probability:")
+for i in range(1, 7):
+    print(i, "=", 1 / 6)
+
+# 4. Probability of getting 1 to 6
+print("\nProbability of getting each number:")
+for i in range(6):
+    print("P(", i + 1, ") =", frequency[i] / 1000)
+
+# 5. Even number
+even = np.sum(rolls % 2 == 0)
+print("\n5. Probability of Even Number =", even / 1000)
+
+# 6. Odd number
+odd = np.sum(rolls % 2 != 0)
+print("6. Probability of Odd Number =", odd / 1000)
+
+# 7. Greater than 4
+greater4 = np.sum(rolls > 4)
+print("7. Probability of Number > 4 =", greater4 / 1000)
+
+# 8. Less than 4
+less4 = np.sum(rolls < 4)
+print("8. Probability of Number < 4 =", less4 / 1000)
+
+# 9. Greater than or equal to 4
+greater_equal4 = np.sum(rolls >= 4)
+print("9. Probability of Number >= 4 =", greater_equal4 / 1000)
+
+
+# 10. Bar chart - Frequency
+plt.bar(range(1, 7), frequency)
+plt.xlabel("Dice Number")
+plt.ylabel("Frequency")
+plt.title("Frequency of Dice Outcomes")
+plt.show()
+
+
+# 11. Bar chart - Experimental Probability
+probability = np.array(frequency) / 1000
+
+plt.bar(range(1, 7), probability)
+plt.xlabel("Dice Number")
+plt.ylabel("Probability")
+plt.title("Experimental Probability")
+plt.show()
+
+
+# 12. Pie chart
+plt.pie(
+    frequency,
+    labels=["1", "2", "3", "4", "5", "6"],
+    autopct="%1.1f%%"
+)
+plt.title("Dice Outcome Percentage")
+plt.show()
+
+
+# 13. Experimental vs Theoretical
+theoretical = [1 / 6] * 6
+
+plt.plot(
+    range(1, 7),
+    probability,
+    marker="o",
+    label="Experimental"
+)
+
+plt.plot(
+    range(1, 7),
+    theoretical,
+    marker="o",
+    label="Theoretical"
+)
+
+plt.xlabel("Dice Number")
+plt.ylabel("Probability")
+plt.title("Experimental vs Theoretical Probability")
+plt.legend()
+plt.grid()
+plt.show()
+
+
+# 14. Even vs Odd
+plt.bar(
+    ["Even", "Odd"],
+    [even, odd]
+)
+
+plt.xlabel("Outcome")
+plt.ylabel("Frequency")
+plt.title("Even vs Odd Outcomes")
+plt.show()
+
+
+# 15. Experimental probability categories
+categories = [
+    "Even",
+    "Odd",
+    "> 4",
+    "< 4"
+]
+
+values = [
+    even / 1000,
+    odd / 1000,
+    greater4 / 1000,
+    less4 / 1000
+]
+
+plt.bar(categories, values)
+plt.xlabel("Category")
+plt.ylabel("Probability")
+plt.title("Experimental Probability")
+plt.show()
